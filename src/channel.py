@@ -1,5 +1,6 @@
 import json
 import os
+
 from distutils.command.build import build
 
 
@@ -19,9 +20,14 @@ class Channel:
         self.video_count = self.channel["statistics"]["videoCount"]
         self.view_count = self.channel["statistics"]["viewCount"]
 
-    def print_info(self) -> None:
-        """Выводит в консоль информацию о канале."""
-        print(json.dumps(self.channel, indent=2, ensure_ascii=False))
+    def __str__(self):
+        """Метод для отображения информации об объекте класса для пользователей"""
+        return f"{self.title} ({self.url})"
+
+    @property
+    def channel_id(self):
+        """Геттер приватного атрибута класса"""
+        return self.__channel_id
 
     @classmethod
     def get_channel_info(cls, channel_id: str) -> dict:
@@ -33,6 +39,10 @@ class Channel:
     def get_service(cls):
         """Класс-метод возвращающий объект для работы с YouTube API."""
         return cls.youtube
+
+    def print_info(self) -> None:
+        """Выводит в консоль информацию о канале."""
+        print(json.dumps(self.channel, indent=2, ensure_ascii=False))
 
     def to_json(self, file_name):
         """Метод сохраняющий в файл значения атрибутов экземпляра Channel."""
