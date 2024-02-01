@@ -24,6 +24,12 @@ class Channel:
         print(json.dumps(self.channel, indent=2, ensure_ascii=False))
 
     @classmethod
+    def get_channel_info(cls, channel_id: str) -> dict:
+        """Получает информацию о канале по его ID."""
+        response = cls.youtube.channels().list(id=channel_id, part='snippet,statistics').execute()
+        return response['items'][0]
+
+    @classmethod
     def get_service(cls):
         """Класс-метод возвращающий объект для работы с YouTube API."""
         return cls.youtube
