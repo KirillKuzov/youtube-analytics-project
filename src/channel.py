@@ -60,3 +60,4 @@ class Channel:
 
         with open(file_name, "w", encoding="UTF-8") as outfile:
             outfile.write(json_data)
+
