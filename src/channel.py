@@ -24,6 +24,34 @@ class Channel:
         """Метод для отображения информации об объекте класса для пользователей"""
         return f"{self.title} ({self.url})"
 
+    def __add__(self, other):
+        """Метод для операции сложения"""
+        return int(self.subscribers) + int(other.subscribers)
+
+    def __sub__(self, other):
+        """Метод для операции вычитания"""
+        return int(self.subscribers) - int(other.subscribers)
+
+    def __gt__(self, other):
+        """Метод для операции сравнения «больше»"""
+        return int(self.subscribers) > int(other.subscribers)
+
+    def __ge__(self, other):
+        """Метод для операции сравнения «больше или равно»"""
+        return int(self.subscribers) >= int(other.subscribers)
+
+    def __lt__(self, other):
+        """Метод для операции сравнения «меньше»"""
+        return int(self.subscribers) < int(other.subscribers)
+
+    def __le__(self, other):
+        """Метод для операции сравнения «меньше или равно»"""
+        return int(self.subscribers) <= int(other.subscribers)
+
+    def __eq__(self, other):
+        """Метод для операции равенства / идентичности"""
+        return int(self.subscribers) == int(other.subscribers)
+
     @property
     def channel_id(self):
         """Геттер приватного атрибута класса"""
