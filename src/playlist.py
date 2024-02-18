@@ -8,7 +8,7 @@ class Playlist:
     api_key = os.getenv('YT_API_KEY')
     youtube = build('youtube', 'v3', developerKey=api_key)
 
- def __init__(self, playlist_id):
+    def __init__(self, playlist_id):
         """Инициализирует объект класса"""
         self.playlist_id = playlist_id
         self.channel_playlists = self.get_channel_playlists()
