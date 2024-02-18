@@ -54,3 +54,4 @@ class PLVideo(Video):
             self.id_playlist = id_playlist
         else:
             raise ValueError("В этом плейлисте видео не найдено")
+
