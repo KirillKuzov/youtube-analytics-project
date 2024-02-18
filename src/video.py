@@ -11,11 +11,17 @@ class Video:
     def __init__(self, id_video: str):
         """Инициализация атрибутов с предварительной проверкой валидности id видео"""
         self.id_video = id_video
-        self.info_video = self.get_video_info(id_video)
-        self.title = self.info_video["snippet"]["title"]
-        self.url_video = f"https://www.youtube.com/watch?v={self.id_video}"
-        self.watched_count = self.info_video["statistics"]["viewCount"]
-        self.like_count = self.info_video["statistics"]["likeCount"]
+        try:
+            self.info_video = self.get_video_info(id_video)
+        except LookupError:
+            print("Видео id не существует.")
+            self.info_video = self.title = self.url_video = self.watched_count = self.like_count = None
+        else:
+            self.info_video = self.get_video_info(id_video)
+            self.title = self.info_video["snippet"]["title"]
+            self.url_video = f"https://www.youtube.com/watch?v={self.id_video}"
+            self.watched_count = self.info_video["statistics"]["viewCount"]
+            self.like_count = self.info_video["statistics"]["likeCount"]
 
     @classmethod
     def get_service(cls):
